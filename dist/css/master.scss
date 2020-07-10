@@ -1,6 +1,38 @@
 @import './reset.css' ;
 
+$grid-columns: 12;
 
+//grid gap
+  :root {
+    --grid-gap: 10px;
+  }
+
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--grid-gap) * -1) 0 0 calc(var(--grid-gap) * -1);
+}
+
+.col {
+  box-sizing: border-box;
+  background-clip: content-box;
+  flex-basis: 100%;
+}
+
+//round flex items' width
+@function round-width($i) {
+  $width: floor(100 * $i * 100 / $grid-columns) / 100;
+  @return $width#{"%"};
+}
+
+//utility classes
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    flex-basis: round-width($i);
+    max-width: round-width($i);
+  }
+}
 
 // Margins
   $margin: 1rem ;
@@ -224,4 +256,23 @@ html{
   border-radius: 5px;
   background: $color-primary;
   color: $color-opposite ;
+}
+
+@media only screen and (min-width: 768px) {
+  @for $i from 1 through $grid-columns {
+    .col-m-#{$i} {
+      flex-basis: round-width($i);
+      max-width: round-width($i);
+    }
+  }
+
+}
+
+@media only screen and (min-width: 1024px) {
+  @for $i from 1 through $grid-columns {
+    .col-l-#{$i} {
+      flex-basis: round-width($i);
+      max-width: round-width($i);
+    }
+  }
 }
