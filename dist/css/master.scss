@@ -1,5 +1,9 @@
 @import './reset.css' ;
 
+* {
+    border: solid red 1px;
+}
+
 $grid-columns: 12;
 
 //grid gap
@@ -258,7 +262,7 @@ html{
   color: $color-opposite ;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-device-width: 768px) {
   @for $i from 1 through $grid-columns {
     .col-m-#{$i} {
       flex-basis: round-width($i);
@@ -268,7 +272,7 @@ html{
 
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-device-width: 1024px) {
   @for $i from 1 through $grid-columns {
     .col-l-#{$i} {
       flex-basis: round-width($i);

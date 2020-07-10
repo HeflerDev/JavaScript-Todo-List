@@ -1,4 +1,7 @@
 @import url(./reset.css);
+* {
+  border: solid red 1px; }
+
 :root {
   --grid-gap: 10px; }
 
@@ -195,7 +198,7 @@ html {
   background: #242424;
   color: white; }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-device-width: 768px) {
   .col-m-1 {
     flex-basis: 8.33%;
     max-width: 8.33%; }
@@ -243,7 +246,7 @@ html {
   .col-m-12 {
     flex-basis: 100%;
     max-width: 100%; } }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-device-width: 1024px) {
   .col-l-1 {
     flex-basis: 8.33%;
     max-width: 8.33%; }
