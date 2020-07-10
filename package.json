@@ -1,0 +1,24 @@
+{
+  "name": "JavaScript-Basic-Configuration",
+  "version": "1.0.0",
+  "description": "Template Reppo",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeflerDev/JavaScript-Basic-Configuration.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeflerDev/JavaScript-Basic-Configuration/issues"
+  },
+  "homepage": "https://github.com/HeflerDev/JavaScript-Basic-Configuration#readme",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
