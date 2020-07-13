@@ -135,6 +135,9 @@ html {
 .between {
   justify-content: space-between !important; }
 
+.text-left {
+  text-align: left; }
+
 .btn {
   border: solid #646464 2px;
   background: #c8c8c8;
