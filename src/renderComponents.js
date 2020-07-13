@@ -17,4 +17,7 @@ const renderComponents = (() => {
             tag.classList.add(tagClass);
         }
     };
+    return { renderTag } ;
 })();
+
+export default renderComponents ;
