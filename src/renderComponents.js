@@ -17,6 +17,9 @@ const renderComponents = (() => {
             tag.classList.add(tagClass);
         }
     };
+
+
+
     return { renderTag } ;
 })();
 
