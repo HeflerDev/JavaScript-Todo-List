@@ -16,9 +16,8 @@ const renderComponents = (() => {
         } else if (tagClass) {
             tag.classList.add(tagClass);
         }
+        return tag ;
     };
-
-
 
     return { renderTag } ;
 })();

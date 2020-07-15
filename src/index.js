@@ -1,6 +1,7 @@
 import RenderComponents from './renderComponents';
 import tasksTab from './tasksTab';
+import displayController from './displayController';
 
-window.onload = function main () {
-    tasksTab.renderTask();
-};
+ const main = (() => {
+    tasksTab.renderNewTaskBtn();
+})();

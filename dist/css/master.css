@@ -3,7 +3,7 @@
   border: solid red 1px; }
 
 :root {
-  --grid-gap: 10px; }
+  --grid-gap: 0px; }
 
 .flex-grid {
   display: flex;
