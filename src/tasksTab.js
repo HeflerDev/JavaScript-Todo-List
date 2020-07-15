@@ -1,7 +1,9 @@
 import renderComponents from './renderComponents';
 import displayController from './displayController';
 /*
- * This module takes care of rendering each task.
+[feature/main 9efca44] Logic/Basic Create New Task and Id System
+ 11 files changed, 99 insertions(+), 59 deletions(-)
+ rewrite dist/main.js (100%)
  * REMINDER: renderComponents.renderTag() takes as parameter:
  * (tag, parentId, tag Id, tag class(if more than one, takes an array))
  */
@@ -17,24 +19,24 @@ const tasksTab = (() => {
         let uniqueId = displayController.generateUniqueId() ;
         // Render a single task
         // Create Tags
-        renderComponents.renderTag('div','tasks-tab', 'task-container', 'box');
-        renderComponents.renderTag('div','task-container', 'sub-task-container', ['minibox','flex-grid']);
+        renderComponents.renderTag('div','tasks-tab', `task-container${uniqueId}`, 'box');
+        renderComponents.renderTag('div',`task-container${uniqueId}`, `sub-task-container${uniqueId}`, ['minibox','flex-grid']);
         // Title
-        renderComponents.renderTag('h2','sub-task-container', 'task-title', ['minibox', 'col-10', 'text-left']).textContent = title;
+        renderComponents.renderTag('h2',`sub-task-container${uniqueId}`, `task-title${uniqueId}`, ['minibox', 'col-10', 'text-left']).textContent = title;
         // Done Btn
-        renderComponents.renderTag('button', 'sub-task-container', 'complete-task-btn', 'col-2').textContent = 'Done!';
-        renderComponents.renderTag('div', 'sub-task-container', 'task-content', ['minibox', 'flex-grid', 'col-12']);
+        renderComponents.renderTag('button', `sub-task-container${uniqueId}`, `complete-task-btn${uniqueId}`, 'col-2').textContent = 'Done!';
+        renderComponents.renderTag('div', `sub-task-container${uniqueId}`, `task-content${uniqueId}`, ['minibox', 'flex-grid', 'col-12']);
         // Task Description
-        renderComponents.renderTag('span', 'task-content', 'task-description', ['minibox', 'col-12', 'col-m-9' ]).innerHTML = description;
+        renderComponents.renderTag('span', `task-content${uniqueId}`, `task-description${uniqueId}`, ['minibox', 'col-12', 'col-m-9' ]).innerHTML = description;
         // Buttons
-        renderComponents.renderTag('div', 'task-content', 'btn-container', ['col-12', 'col-m-3', 'minibox', 'column']);
-        renderComponents.renderTag('button', 'btn-container', 'edit-task-btn', 'col-12').innerHTML = 'Edit';
-        renderComponents.renderTag('button', 'btn-container', 'delete-task-btn', 'col-12').innerHTML = 'Delete';
+        renderComponents.renderTag('div', `task-content${uniqueId}`, `btn-container${uniqueId}`, ['col-12', 'col-m-3', 'minibox', 'column']);
+        renderComponents.renderTag('button', `btn-container${uniqueId}`, `edit-task-btn${uniqueId}`, 'col-12').innerHTML = 'Edit';
+        renderComponents.renderTag('button', `btn-container${uniqueId}`, `delete-task-btn${uniqueId}`, 'col-12').innerHTML = 'Delete';
         // Task Info
-        renderComponents.renderTag('div', 'task-content', 'task-info-container');
-        renderComponents.renderTag('span', 'task-info-container', 'xp-info').textContent = '30xp';
-        renderComponents.renderTag('span', 'task-info-container', 'difficulty-info').textContent = difficulty;
-        renderComponents.renderTag('span', 'task-info-container', 'points-info').textContent = '1000 Points';
+        renderComponents.renderTag('div', `task-content${uniqueId}`, `task-info-container${uniqueId}`);
+        renderComponents.renderTag('span', `task-info-container${uniqueId}`, `xp-info${uniqueId}`).textContent = '30xp';
+        renderComponents.renderTag('span', `task-info-container${uniqueId}`, `difficulty-info${uniqueId}`).textContent = difficulty;
+        renderComponents.renderTag('span', `task-info-container${uniqueId}`, `points-info${uniqueId}`).textContent = '1000 Points';
     };
 
     const renderNewTaskForm = () => {

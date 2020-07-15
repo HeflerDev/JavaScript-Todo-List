@@ -2,6 +2,11 @@ import tasksTab from './tasksTab' ;
 
 const displayController = (() => {
 
+/*
+ * Module that handle the main logic of the project
+ * Listeners and handlers can be found here
+ */
+
     const displayForm = () => {
         if (! document.getElementById('new-task-form')) {
                 let form = tasksTab.renderNewTaskForm();
@@ -20,8 +25,8 @@ const displayController = (() => {
     };
 
     const generateUniqueId = () => {
-        date = Date();
-        return `Task-${date.getFullYear()}${date.getMonth()}${date.getMinutes}${date.getMilliseconds()}`;
+        let date = new Date();
+        return `Task-${date.getFullYear()}${date.getMonth()}${date.getMinutes()}${date.getMilliseconds()}`;
     };
 
     const enableSubmit = () => document.getElementById('fsubmit').addEventListener('click', handleFormSubmit) ;
