@@ -41,10 +41,10 @@ const tasksTab = (() => {
 
     const renderNewTaskForm = () => {
         // Form
-        renderComponents.renderTag('form', 'content', 'new-task-form', ['box', 'flex-grid']);
+        renderComponents.renderTag('form', 'content', 'new-task-form', ['box', 'row', 'flex-grid']);
         // Name Input
-        renderComponents.renderTag('label', 'new-task-form').textContent = 'Name of the Task' ;
-        renderComponents.renderTag('input', 'new-task-form', 'fname').type = 'text';
+        renderComponents.renderTag('label', 'new-task-form','taskname', ['minibox','column','col-8', 'col-l-4']).textContent = 'Name of the Task' ;
+        renderComponents.renderTag('input', 'new-task-form', 'fname',['minibox','column', 'col-12', 'col-l-8']).type = 'text';
         // Description Input
         renderComponents.renderTag('label', 'new-task-form').textContent = 'Description';
         renderComponents.renderTag('textarea', 'new-task-form', 'fdescription');
@@ -53,6 +53,13 @@ const tasksTab = (() => {
         renderComponents.renderTag('select', 'new-task-form', 'foptions');
         renderComponents.renderTag('option', 'foptions').textContent = 'Trivial' ;
         renderComponents.renderTag('option', 'foptions').textContent = 'Easy' ;
+        renderComponents.renderTag('option', 'foptions').textContent = 'Medium' ;
+        renderComponents.renderTag('option', 'foptions').textContent = 'Hard' ;
+        // Date Btn
+        renderComponents.renderTag('input', 'new-task-form', 'datepicker')
+        const input = document.getElementById('datepicker');
+        const datepicker = new TheDatepicker.Datepicker(input);
+        datepicker.render();
         // Submit btn
         renderComponents.renderTag('input', 'new-task-form', 'fsubmit').type = 'button' ;
     }

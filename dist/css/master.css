@@ -1,7 +1,4 @@
 @import url(./reset.css);
-* {
-  border: solid red 1px; }
-
 :root {
   --grid-gap: 0px; }
 
