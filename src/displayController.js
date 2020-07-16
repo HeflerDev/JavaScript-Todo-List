@@ -18,10 +18,9 @@ const displayController = (() => {
         let data = {
             name : document.getElementById('fname'),
             description: document.getElementById('fdescription'),
-            // difficulty: document.getElementById('fdifficulty')
+            difficulty: document.getElementById('foptions')
         };
-
-        tasksTab.renderTask(data.name.value, data.description.value);
+        tasksTab.renderTask(data.name.value, data.description.value, data.difficulty.value);
     };
 
     const generateUniqueId = () => {
