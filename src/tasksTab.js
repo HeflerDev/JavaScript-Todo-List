@@ -14,7 +14,7 @@ const tasksTab = (() => {
         renderComponents.renderTag('button', 'new-task-container', 'new-task-btn', 'col-2').innerHTML = 'Add Task';
     };
 
-    const renderTask = (title, description, difficulty = 'Trivial') => {
+    const renderTask = (title, description, difficulty, date) => {
 
         let uniqueId = displayController.generateUniqueId() ;
         // Render a single task
@@ -37,6 +37,7 @@ const tasksTab = (() => {
         renderComponents.renderTag('span', `task-info-container${uniqueId}`, `xp-info${uniqueId}`).textContent = '30xp';
         renderComponents.renderTag('span', `task-info-container${uniqueId}`, `difficulty-info${uniqueId}`).textContent = difficulty;
         renderComponents.renderTag('span', `task-info-container${uniqueId}`, `points-info${uniqueId}`).textContent = '1000 Points';
+        renderComponents.renderTag('span', `task-info-container${uniqueId}`, `date-info${uniqueId}`).textContent = date ;
     };
 
     const renderNewTaskForm = () => {

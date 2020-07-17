@@ -1,4 +1,5 @@
 import tasksTab from './tasksTab' ;
+import Project from './projects' ;
 
 const displayController = (() => {
 
@@ -18,9 +19,10 @@ const displayController = (() => {
         let data = {
             name : document.getElementById('fname'),
             description: document.getElementById('fdescription'),
-            difficulty: document.getElementById('foptions')
+            difficulty: document.getElementById('foptions'),
+            date: document.getElementById('datepicker')
         };
-        tasksTab.renderTask(data.name.value, data.description.value, data.difficulty.value);
+        tasksTab.renderTask(data.name.value, data.description.value, data.difficulty.value, data.date.value);
     };
 
     const generateUniqueId = () => {

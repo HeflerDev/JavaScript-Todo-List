@@ -1,4 +1,4 @@
-function Project(name) {
+export function Project(name) {
     this.name = name ;
     this.listOfProjects = [] ;
 
@@ -22,5 +22,9 @@ function Project(name) {
         } else {
             alert('Error: Report Error');
         }
-    }
+    };
+
+    this.getDataFromCache = function () {
+        const data = JSON.parse(localStorage.getItem(name));
+    };
 }
