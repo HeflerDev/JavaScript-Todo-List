@@ -1,6 +1,6 @@
-export function Project(name) {
+module.exports = function Project(name) {
     this.name = name ;
-    this.listOfProjects = [] ;
+    this.listOfTasks = [] ;
 
     this.isObject = function (val) {
         if (val === null) { return false };
@@ -9,16 +9,16 @@ export function Project(name) {
 
     this.addTaskToProject = function (obj) {
         if (this.isObject(obj)) {
-            this.listOfProjects.push(obj);
+            this.listOfTasks.push(obj);
             return true ;
         } else {
             return false ;
         }
     };
 
-    this.saveDataToCache = function (itemsArray) {
+    this.saveDataToCache = function () {
         if (typeof this.name === 'string') {
-            localStorage.setItem(name, JSON.stringify(itemsArray));
+            localStorage.setItem(name, JSON.stringify(this.listOfTasks));
         } else {
             alert('Error: Report Error');
         }

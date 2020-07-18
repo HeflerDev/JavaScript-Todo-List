@@ -1,5 +1,6 @@
 import tasksTab from './tasksTab' ;
 import Project from './projects' ;
+import projectsTab from './projectsTab';
 
 const displayController = (() => {
 
@@ -8,12 +9,26 @@ const displayController = (() => {
  * Listeners and handlers can be found here
  */
 
-    const displayForm = () => {
+    const displayTaskForm = () => {
         if (! document.getElementById('new-task-form')) {
                 let form = tasksTab.renderNewTaskForm();
                 enableSubmit() ;
             }
         };
+
+    const displayProjectForm = () => {
+        if (! document.getElementById('projects-form-container')) {
+            projectsTab.renderProjectsForm();
+            document.getElementById('project-submit-btn').addEventListener('click', handleProjectSubmit);
+        }
+    };
+
+    const handleProjectSubmit = () => {
+        let name = document.getElementById('project-name');
+        const project = new Project(name.value);
+        project.saveDataToCache();
+        projectsTab.unrenderProjectsForm();
+    };
 
     const handleFormSubmit = () => {
         let data = {
@@ -31,7 +46,7 @@ const displayController = (() => {
     };
 
     const enableSubmit = () => document.getElementById('fsubmit').addEventListener('click', handleFormSubmit) ;
-    window.onload = (function () { document.getElementById('new-task-btn').addEventListener('click', displayForm) });
+    window.onload = (function () { document.getElementById('new-project-btn').addEventListener('click', displayProjectForm) });
 
     return { generateUniqueId }
 })();

@@ -1,4 +1,7 @@
 @import url(./reset.css);
+* {
+  border: solid red 1px; }
+
 :root {
   --grid-gap: 0px; }
 
@@ -134,6 +137,9 @@ html {
 
 .text-left {
   text-align: left; }
+
+.text-center {
+  text-align: center; }
 
 .btn {
   border: solid #646464 2px;
