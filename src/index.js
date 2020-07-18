@@ -3,6 +3,6 @@ import tasksTab from './tasksTab';
 import displayController from './displayController';
 import projectsTab from './projectsTab';
 
- const main = (() => {
-    projectsTab.renderNewProjectButton();
+const main = (() => {
+    projectsTab();
 })();
