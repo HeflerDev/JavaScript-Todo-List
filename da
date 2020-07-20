@@ -1,0 +1,107 @@
+[33mcommit 649a77ee1a6565655065bd56185b2f7e342c820f[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/main[m[33m)[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Sat Jul 18 02:34:21 2020 -0300
+
+    Add New Task Button to each project (just render)
+
+[33mcommit 0654b867bc2142f5e04ab5593cd63ff69deef229[m[33m ([m[1;31morigin/feature/main[m[33m)[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Sat Jul 18 01:40:22 2020 -0300
+
+    Adjust localStorage and project logic
+
+[33mcommit a781ccb4f171fb6a456b25caea6930bf93ffe7a2[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Thu Jul 16 23:51:22 2020 -0300
+
+    File/Create projectsTab Factory F.
+
+[33mcommit 23af8413859a0256d49f2ea5c327d84fa37297fe[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Thu Jul 16 21:34:26 2020 -0300
+
+    Logic/Add Project constructor
+
+[33mcommit 9cb2be1821b2abcc76bf2020adb9583d85a6e861[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Thu Jul 16 19:24:46 2020 -0300
+
+    Finish Task Basic Structure
+
+[33mcommit 9c94b9dce8d5fe34d3bcebcd9b011e1d5bd35c0e[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Thu Jul 16 14:48:48 2020 -0300
+
+    Adjust Fom data gathering
+
+[33mcommit 2b5f395a93f8c6306058dea205b2697dbd3a57d9[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Thu Jul 16 01:49:29 2020 -0300
+
+    Add mtr-datepicker for dates
+
+[33mcommit 1bfd3f4e3020ed02ac71d982b78c3fee96c22513[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Wed Jul 15 18:17:56 2020 -0300
+
+    Generate Unique Id for Tasks
+
+[33mcommit 9efca44bf8c9efe1b8488d31a33006741f1a8e8f[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Wed Jul 15 17:40:36 2020 -0300
+
+    Logic/Basic Create New Task and Id System
+
+[33mcommit 647db235f6e01cca515265b2c88a5aaaa172eb98[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Mon Jul 13 22:02:50 2020 -0300
+
+    DOM/Fill Content
+
+[33mcommit 27486b9f5624ac3f84be45d1e894f05e81f287a3[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Mon Jul 13 20:43:20 2020 -0300
+
+    DOM/Create JavaScript Tags
+
+[33mcommit 9d3de8b0d6fe8952e7c5d0fe1cf477f84971903e[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Mon Jul 13 14:38:39 2020 -0300
+
+    HTML/Create mission struct
+
+[33mcommit 7dd8af54ee022cd45de178e65c50cf2fee009245[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Mon Jul 13 13:29:31 2020 -0300
+
+    Render/Create renderTask and displayController
+
+[33mcommit 56697b467ed422cd4c1d02fe19e905b62d2d49ad[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Mon Jul 13 13:11:50 2020 -0300
+
+    SRC/create renderComponents()
+
+[33mcommit 3c8954b6fe7eb675285c80622f984387a47b547a[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Fri Jul 10 19:55:41 2020 -0300
+
+    HTML/Finish Basic Structure
+
+[33mcommit 4da4b420041db4d086c5f9a60f444c1e06c4805a[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Fri Jul 10 19:27:16 2020 -0300
+
+    CSS/Add Grid System
+
+[33mcommit 5cbf5a3cab7d30c911baa48e5d9dee5c919b4ec2[m
+Author: HeflerDev <hheflerdevelopment@gmail.com>
+Date:   Fri Jul 10 19:12:10 2020 -0300
+
+    HTML/Basic Structure
+
+[33mcommit 65773bb45de480b56c5a0c210d700a53a441d596[m
+Author: Henrique Hefler <hheflerdevelopment@gmail.com>
+Date:   Fri Jul 10 16:16:39 2020 -0300
+
+    Initialize feature/main

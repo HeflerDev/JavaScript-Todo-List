@@ -1,26 +1,36 @@
 import renderComponents from './renderComponents'
 import Project from './projects'
+import displayController from './displayController';
 
 const projectsTab = (() => {
 
-    (function (){
-        if (localStorage.length === 0){
-            (function renderFirstButton () {
-                renderComponents.renderTag('div', 'content', 'project-btn-container', ['box', 'end', 'col-12']);
-                renderComponents.renderTag('button', 'project-btn-container', 'new-project-btn', ['minibox', 'center', 'col-12']);
-                let newBtn = renderComponents.renderTag('span', 'new-project-btn', null);
-                newBtn.textContent = 'New Project'
-            })();
-            let warning = renderComponents.renderTag('h1', 'content', null, ['box', 'col-12'] );
-            warning.textContent = 'No Project to display' ;
-        } else {
+    function renderNewButton () {
+        renderComponents.renderTag('div', 'content', 'project-btn-container', ['box', 'end', 'col-12']);
+        renderComponents.renderTag('button', 'project-btn-container', 'new-project-btn', ['minibox', 'center', 'col-12']);
+        let newBtn = renderComponents.renderTag('span', 'new-project-btn', null);
+        newBtn.textContent = 'New Project'
+    };
+
+
+    function renderProjects() {
             Object.keys(localStorage).forEach(function (key, index) {
                 renderComponents.renderTag('div', 'content', `project-container${index}`, ['flex-grid', 'col-12']);
                 let project = renderComponents.renderTag('h2', `project-container${index}`, `project-${index}`, ['minibox', 'col-12', 'col-l-10']);
                 project.textContent = key;
                 let newBtn = renderComponents.renderTag('button', `project-container${index}`, `new-project-btn${index}`, ['col-12', 'col-l-2']);
                 newBtn.textContent = 'New Task';
+                newBtn.addEventListener('click', displayController.displayTaskForm();
             });
+    };
+
+    (function (){
+        if (localStorage.length === 0){
+            renderNewButton();
+            let warning = renderComponents.renderTag('h1', 'content', null, ['box', 'col-12'] );
+            warning.textContent = 'No Project to display' ;
+        } else {
+            renderNewButton();
+            renderProjects();
         }
     })();
 
@@ -54,7 +64,7 @@ const projectsTab = (() => {
 
     return { renderProjectsForm, unrenderProjectsForm }
 
-});
+})();
 
 export default projectsTab ;
 
