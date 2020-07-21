@@ -9,12 +9,12 @@ const displayController = (() => {
  * Listeners and handlers can be found here
  */
 
-    const displayTaskForm = () => {
+    const displayTaskForm = (btn) => {
         if (! document.getElementById('new-task-form')) {
-                let form = tasksTab.renderNewTaskForm();
-                enableSubmit() ;
-            }
-        };
+            let form = tasksTab.renderNewTaskForm();
+            document.getElementById('fsubmit').addEventListener('click', (function () { handleTaskSubmit(btn) }));
+        }
+    };
 
     const displayProjectForm = () => {
         if (! document.getElementById('projects-form-container')) {
@@ -30,14 +30,14 @@ const displayController = (() => {
         projectsTab.unrenderProjectsForm();
     };
 
-    const handleFormSubmit = () => {
+    const handleTaskSubmit = (btn) => {
         let data = {
-            name : document.getElementById('fname'),
+            name: document.getElementById('fname'),
             description: document.getElementById('fdescription'),
             difficulty: document.getElementById('foptions'),
             date: document.getElementById('datepicker')
         };
-        tasksTab.renderTask(data.name.value, data.description.value, data.difficulty.value, data.date.value);
+        tasksTab.renderTask(data.name.value, data.description.value, data.difficulty.value, data.date.value, btn);
     };
 
     const generateUniqueId = () => {
@@ -45,10 +45,9 @@ const displayController = (() => {
         return `Task-${date.getFullYear()}${date.getMonth()}${date.getMinutes()}${date.getMilliseconds()}`;
     };
 
-    const enableSubmit = () => document.getElementById('fsubmit').addEventListener('click', handleFormSubmit) ;
     window.onload = (function () { document.getElementById('new-project-btn').addEventListener('click', displayProjectForm) });
 
-    return { generateUniqueId }
+    return { generateUniqueId, displayTaskForm }
 })();
 
 export default displayController ;

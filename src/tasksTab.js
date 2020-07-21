@@ -7,19 +7,19 @@ import displayController from './displayController';
  * REMINDER: renderComponents.renderTag() takes as parameter:
  * (tag, parentId, tag Id, tag class(if more than one, takes an array))
  */
-const tasksTab = (() => {
+const tasksTab = ((taskBtn) => {
 
     const renderNewTaskBtn = () => {
         renderComponents.renderTag('div', 'tasks-tab', 'new-task-container', ['minibox', 'col-12', 'end']);
         renderComponents.renderTag('button', 'new-task-container', 'new-task-btn', 'col-2').innerHTML = 'Add Task';
     };
 
-    const renderTask = (title, description, difficulty, date) => {
-
+    const renderTask = (title, description, difficulty, date, taskBtn) => {
         let uniqueId = displayController.generateUniqueId() ;
         // Render a single task
         // Create Tags
-        renderComponents.renderTag('div','tasks-tab', `task-container${uniqueId}`, 'box');
+
+        renderComponents.renderTag('div', taskBtn.parentElement.id, `task-container${uniqueId}`, 'box');
         renderComponents.renderTag('div',`task-container${uniqueId}`, `sub-task-container${uniqueId}`, ['minibox','flex-grid']);
         // Title
         renderComponents.renderTag('h2',`sub-task-container${uniqueId}`, `task-title${uniqueId}`, ['minibox', 'col-10', 'text-left']).textContent = title;
@@ -68,6 +68,11 @@ const tasksTab = (() => {
         submitBtn.value = 'Create Task';
 
     }
+
+    function unrenderNewTaskForm() {
+
+    }
+
     return { renderTask, renderNewTaskForm, renderNewTaskBtn };
 })();
 

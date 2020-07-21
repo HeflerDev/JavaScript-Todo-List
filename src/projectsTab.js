@@ -1,6 +1,6 @@
 import renderComponents from './renderComponents'
 import Project from './projects'
-import displayController from './displayController';
+import displayController from './displayController'
 
 const projectsTab = (() => {
 
@@ -12,16 +12,17 @@ const projectsTab = (() => {
     };
 
 
-    function renderProjects() {
+    const renderProjects = () => {
             Object.keys(localStorage).forEach(function (key, index) {
-                renderComponents.renderTag('div', 'content', `project-container${index}`, ['flex-grid', 'col-12']);
-                let project = renderComponents.renderTag('h2', `project-container${index}`, `project-${index}`, ['minibox', 'col-12', 'col-l-10']);
+                renderComponents.renderTag('div', 'content', `project-container-${index}`, ['flex-grid', 'col-12']);
+                let project = renderComponents.renderTag('h2', `project-container-${index}`, `project-${index}`, ['minibox', 'col-12', 'col-l-10']);
                 project.textContent = key;
-                let newBtn = renderComponents.renderTag('button', `project-container${index}`, `new-project-btn${index}`, ['col-12', 'col-l-2']);
+                let newBtn = renderComponents.renderTag('button', `project-container-${index}`, `new-task-btn-${index}`, ['col-12', 'col-l-2']);
                 newBtn.textContent = 'New Task';
-                newBtn.addEventListener('click', displayController.displayTaskForm();
+                //console.log(`This is ${}`)
+                newBtn.addEventListener('click', (function () { displayController.displayTaskForm(newBtn) }));
             });
-    };
+    }
 
     (function (){
         if (localStorage.length === 0){
@@ -33,19 +34,6 @@ const projectsTab = (() => {
             renderProjects();
         }
     })();
-
-    /*
-    const renderProjectsTab = () => {
-        let title = renderComponents.renderTag('h2', 'content', null, ['box', 'col-12']) ;
-        title.textContent = 'Projects';
-        renderComponents.renderTag('div', 'content', 'project-container', ['box']);
-        Object.keys(localStorage).forEach(function (key) {
-          console.log(localStorage.getItem(key));
-        });
-
-        // renderComponents.renderTag('div');
-    };
-    */
 
     const renderProjectsForm = () => {
         renderComponents.renderTag('form', 'content', 'projects-form-container', ['flex-grid', 'around','box', 'row', 'col-l-5', 'col-12']);
