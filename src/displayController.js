@@ -28,6 +28,7 @@ const displayController = (() => {
         const project = new Project(name.value);
         project.saveDataToCache();
         projectsTab.unrenderProjectsForm();
+        projectsTab.renderProjects();
     };
 
     const handleTaskSubmit = (btn) => {
@@ -45,7 +46,7 @@ const displayController = (() => {
         return `Task-${date.getFullYear()}${date.getMonth()}${date.getMinutes()}${date.getMilliseconds()}`;
     };
 
-    window.onload = (function () { document.getElementById('new-project-btn').addEventListener('click', displayProjectForm) });
+    document.getElementById('new-project-btn').addEventListener('click', displayProjectForm);
 
     return { generateUniqueId, displayTaskForm }
 })();
