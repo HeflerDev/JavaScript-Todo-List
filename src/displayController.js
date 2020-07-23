@@ -1,6 +1,5 @@
-import tasksTab from './tasksTab' ;
 import Project from './projects' ;
-import projectsTab from './projectsTab';
+import todoTab from './todoTab' ;
 
 const displayController = (() => {
 
@@ -11,14 +10,18 @@ const displayController = (() => {
 
     const displayTaskForm = (btn) => {
         if (! document.getElementById('new-task-form')) {
-            let form = tasksTab.renderNewTaskForm();
+            let form = todoTab.renderNewTaskForm();
             document.getElementById('fsubmit').addEventListener('click', (function () { handleTaskSubmit(btn) }));
         }
     };
 
     const displayProjectForm = () => {
+        if (document.getElementById('projects-form-container')) {
+            todoTab.unrenderProjectsForm();
+        }
+        // The separate If's is to 'reload'
         if (! document.getElementById('projects-form-container')) {
-            projectsTab.renderProjectsForm();
+            todoTab.renderProjectsForm();
             document.getElementById('project-submit-btn').addEventListener('click', handleProjectSubmit);
         }
     };
@@ -27,18 +30,28 @@ const displayController = (() => {
         let name = document.getElementById('project-name');
         const project = new Project(name.value);
         project.saveDataToCache();
-        projectsTab.unrenderProjectsForm();
-        projectsTab.renderProjects();
+        todoTab.unrenderProjectsForm();
+        todoTab.renderProject(name);
     };
 
     const handleTaskSubmit = (btn) => {
         let data = {
-            name: document.getElementById('fname'),
-            description: document.getElementById('fdescription'),
-            difficulty: document.getElementById('foptions'),
-            date: document.getElementById('datepicker')
+            name: document.getElementById('fname').value,
+            description: document.getElementById('fdescription').value,
+            difficulty: document.getElementById('foptions').value,
+            date: document.getElementById('datepicker').value
         };
-        tasksTab.renderTask(data.name.value, data.description.value, data.difficulty.value, data.date.value, btn);
+        // Update the data on the localStorage
+        let storageKey = btn.parentElement.id ;
+        let value = JSON.parse(localStorage.getItem(storageKey));
+        window.localStorage.removeItem(storageKey);
+        value.push(data);
+        console.log(value);
+        // window.localStorage.setItem(storageKey, value);
+
+
+        todoTab.unrenderNewTaskForm();
+        todoTab.renderTask(data.name, data.description, data.difficulty, data.date, btn.parentElement.id);
     };
 
     const generateUniqueId = () => {

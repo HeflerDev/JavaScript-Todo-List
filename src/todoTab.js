@@ -2,7 +2,7 @@ import renderComponents from './renderComponents'
 import Project from './projects'
 import displayController from './displayController'
 
-const projectsTab = (() => {
+const  todoTab =  (() => {
 
     function renderNewButton () {
         renderComponents.renderTag('div', 'content', 'project-btn-container', ['box', 'end', 'col-12']);
@@ -12,17 +12,26 @@ const projectsTab = (() => {
     };
 
 
-    const renderProjects = () => {
-            Object.keys(localStorage).forEach(function (key, index) {
-                renderComponents.renderTag('div', 'content', `project-container-${index}`, ['flex-grid', 'col-12']);
-                let project = renderComponents.renderTag('h2', `project-container-${index}`, `project-${index}`, ['minibox', 'col-12', 'col-l-10']);
+    const renderAllProjects = () => {
+            Object.keys(localStorage).forEach(function (key) {
+                renderComponents.renderTag('div', 'content', `${key}`, ['flex-grid', 'col-12']);
+                let project = renderComponents.renderTag('h2', `${key}`, `project-${key}`, ['minibox', 'col-12', 'col-l-10']);
                 project.textContent = key;
-                let newBtn = renderComponents.renderTag('button', `project-container-${index}`, `new-task-btn-${index}`, ['col-12', 'col-l-2']);
+                let newBtn = renderComponents.renderTag('button', `${key}`, `new-task-btn-${key}`, ['col-12', 'col-l-2']);
                 newBtn.textContent = 'New Task';
                 //console.log(`This is ${}`)
                 newBtn.addEventListener('click', (function () { displayController.displayTaskForm(newBtn) }));
             });
     }
+
+    const renderProject = (name) => {
+       renderComponents.renderTag('div', 'content', `${name}`, ['flex-grid', 'col-12']);
+       let project = renderComponents.renderTag('h2', `${name}`, `project-${name}`, ['minibox', 'col-12', 'col-l-10']);
+       project.textContent = name.value;
+       let newBtn = renderComponents.renderTag('button', `${name}`, `new-task-btn-${name}`, ['col-12', 'col-l-2']);
+       newBtn.textContent = 'New Task';
+       newBtn.addEventListener('click', (function () { displayController.displayTaskForm(newBtn) }));
+    };
 
     (function (){
         if (localStorage.length === 0){
@@ -31,7 +40,7 @@ const projectsTab = (() => {
             warning.textContent = 'No Project to display' ;
         } else {
             renderNewButton();
-            renderProjects();
+            renderAllProjects();
         }
     })();
 
@@ -54,12 +63,12 @@ const projectsTab = (() => {
         renderComponents.renderTag('button', 'new-task-container', 'new-task-btn', 'col-2').innerHTML = 'Add Task';
     };
 
-    const renderTask = (title, description, difficulty, date, taskBtn) => {
+    const renderTask = (title, description, difficulty, date, parent) => {
         let uniqueId = displayController.generateUniqueId() ;
         // Render a single task
         // Create Tags
 
-        renderComponents.renderTag('div', taskBtn.parentElement.id, `task-container${uniqueId}`, 'box');
+        renderComponents.renderTag('div', parent, `task-container${uniqueId}`, 'box');
         renderComponents.renderTag('div',`task-container${uniqueId}`, `sub-task-container${uniqueId}`, ['minibox','flex-grid']);
         // Title
         renderComponents.renderTag('h2',`sub-task-container${uniqueId}`, `task-title${uniqueId}`, ['minibox', 'col-10', 'text-left']).textContent = title;
@@ -78,7 +87,7 @@ const projectsTab = (() => {
         renderComponents.renderTag('span', `task-info-container${uniqueId}`, `difficulty-info${uniqueId}`).textContent = difficulty;
         renderComponents.renderTag('span', `task-info-container${uniqueId}`, `points-info${uniqueId}`).textContent = '1000 Points';
         renderComponents.renderTag('span', `task-info-container${uniqueId}`, `date-info${uniqueId}`).textContent = date ;
-        unrenderNewTaskForm();
+
     };
 
     const renderNewTaskForm = () => {
@@ -114,9 +123,9 @@ const projectsTab = (() => {
     }
 
 
-    return { renderProjectsForm, unrenderProjectsForm, renderProjects, renderTask, renderNewTaskForm, renderNewTaskBtn }
+    return { renderProjectsForm, unrenderProjectsForm, renderAllProjects, renderProject, renderTask, renderNewTaskForm, unrenderNewTaskForm, renderNewTaskBtn }
 
 })();
 
-export default projectsTab ;
+export default todoTab ;
 

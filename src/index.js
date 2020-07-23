@@ -1,7 +1,6 @@
-import RenderComponents from './renderComponents';
-import tasksTab from './tasksTab';
+import renderComponents from './renderComponents';
 import displayController from './displayController';
-import projectsTab from './projectsTab';
+import todoTab from './todoTab';
 
 const main = (() => {
 })();

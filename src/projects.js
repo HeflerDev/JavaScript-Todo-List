@@ -24,7 +24,7 @@ module.exports = function Project(name) {
         }
     };
 
-    this.getDataFromCache = function () {
+    this.getDataFromCache = function (name) {
         const data = JSON.parse(localStorage.getItem(name));
     };
 }
