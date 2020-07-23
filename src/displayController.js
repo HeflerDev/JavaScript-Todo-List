@@ -6,7 +6,18 @@ const displayController = (() => {
 /*
  * Module that handle the main logic of the project
  * Listeners and handlers can be found here
+ * This module call functions that render, but never render by itself
  */
+
+    (function (){
+        if (localStorage.length === 0){
+            todoTab.renderNewProjectButton();
+            todoTab.renderNoProjectWarning();
+        } else {
+            todoTab.renderNewProjectButton();
+            todoTab.renderAllProjects();
+        }
+    })();
 
     const displayTaskForm = (btn) => {
         if (! document.getElementById('new-task-form')) {
@@ -31,7 +42,8 @@ const displayController = (() => {
         const project = new Project(name.value);
         project.saveDataToCache();
         todoTab.unrenderProjectsForm();
-        todoTab.renderProject(name);
+        console.log(name.value);
+        todoTab.renderProject(name.value);
     };
 
     const handleTaskSubmit = (btn) => {
@@ -44,12 +56,10 @@ const displayController = (() => {
         // Update the data on the localStorage
         let storageKey = btn.parentElement.id ;
         let value = JSON.parse(localStorage.getItem(storageKey));
-        window.localStorage.removeItem(storageKey);
-        value.push(data);
-        console.log(value);
-        // window.localStorage.setItem(storageKey, value);
-
-
+        localStorage.removeItem(storageKey);
+        value.push(JSON.stringify(data));
+        localStorage.setItem(storageKey, JSON.stringify(value));
+        // Takes Care of the Visual*/
         todoTab.unrenderNewTaskForm();
         todoTab.renderTask(data.name, data.description, data.difficulty, data.date, btn.parentElement.id);
     };
