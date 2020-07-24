@@ -22,8 +22,7 @@ const  todoTab =  (() => {
         warning.textContent = 'No Project to display' ;
     };
 
-    const renderAllProjects = () => {
-            Object.keys(localStorage).forEach(function (key) {
+    const renderAllProjects = (key) => {
                 renderComponents.renderTag('div', 'content', `${key}`, ['flex-grid', 'col-12']);
                 let project = renderComponents.renderTag('h2', `${key}`, `project-${key}`, ['minibox', 'col-12', 'col-l-10']);
                 project.textContent = key;
@@ -31,14 +30,11 @@ const  todoTab =  (() => {
                 newBtn.textContent = 'New Task';
                 //console.log(`This is ${}`)
                 newBtn.addEventListener('click', (function () { displayController.displayTaskForm(newBtn) }));
-
-                let items = JSON.parse(localStorage.getItem(key));
-                items.forEach((data) => {
-                    let obj = JSON.parse(data);
-                    renderTask(obj.name, obj.description, obj.difficulty, obj.date, key);
-                });
-            });
     }
+
+    const renderAllTasks = (obj, key) => {
+        renderTask(obj.name, obj.description, obj.difficulty, obj.date, key);
+    };
 
     const renderProject = (name) => {
        renderComponents.renderTag('div', 'content', name, ['flex-grid', 'col-12']);
@@ -82,8 +78,8 @@ const  todoTab =  (() => {
         renderComponents.renderTag('span', `task-content${name}`, `task-description${name}`, ['minibox', 'col-12', 'col-m-9' ]).innerHTML = description;
         // Buttons
         renderComponents.renderTag('div', `task-content${name}`, `btn-container${name}`, ['col-12', 'col-m-3', 'minibox', 'column']);
-        renderComponents.renderTag('button', `btn-container${name}`, `edit-task-btn${name}`, 'col-12').innerHTML = 'Edit';
-        renderComponents.renderTag('button', `btn-container${name}`, `delete-task-btn${name}`, 'col-12').innerHTML = 'Delete';
+        renderComponents.renderTag('button', `btn-container${name}`, `edit-task-btn-${name}`, 'col-12').innerHTML = 'Edit';
+        renderComponents.renderTag('button', `btn-container${name}`, `delete-task-btn-${name}`, 'col-12').innerHTML = 'Delete';
         // Task Info
         renderComponents.renderTag('div', `task-content${name}`, `task-info-container${name}`);
         renderComponents.renderTag('span', `task-info-container${name}`, `xp-info${name}`).textContent = '30xp';
@@ -126,7 +122,7 @@ const  todoTab =  (() => {
     }
 
 
-    return { renderNoProjectWarning, renderProjectsForm, unrenderProjectsForm, renderAllProjects, renderProject, renderTask, renderNewTaskForm, unrenderNewTaskForm, renderNewTaskBtn, renderNewProjectButton }
+    return { renderAllTasks, renderNoProjectWarning, renderProjectsForm, unrenderProjectsForm, renderAllProjects, renderProject, renderTask, renderNewTaskForm, unrenderNewTaskForm, renderNewTaskBtn, renderNewProjectButton }
 
 })();
 

@@ -9,15 +9,6 @@ const displayController = (() => {
  * This module call functions that render, but never render by itself
  */
 
-    (function (){
-        if (localStorage.length === 0){
-            todoTab.renderNewProjectButton();
-            todoTab.renderNoProjectWarning();
-        } else {
-            todoTab.renderNewProjectButton();
-            todoTab.renderAllProjects();
-        }
-    })();
 
     const displayTaskForm = (btn) => {
         if (! document.getElementById('new-task-form')) {
@@ -46,6 +37,26 @@ const displayController = (() => {
         todoTab.renderProject(name.value);
     };
 
+    function deleteTask(key) {
+        document.getElementById(`task-container-${key}`).remove();
+    };
+
+    const displayAllProjects = () => {
+        Object.keys(localStorage).forEach((key) => {
+            todoTab.renderAllProjects(key);
+            let item = JSON.parse(localStorage.getItem(key));
+            item.forEach((data) => {
+                let obj = JSON.parse(data);
+                todoTab.renderAllTasks(obj, key);
+            });
+        });
+    };
+
+    const enableTaskListeners = (key) => {
+        document.getElementById(`delete-task-btn-${key}`).addEventListener('click', (() => { deleteTask(storageKey) }));
+        document.getElementById(`edit-task-btn-${key}`);
+    };
+
     const handleTaskSubmit = (btn) => {
         let data = {
             name: document.getElementById('fname').value,
@@ -62,16 +73,25 @@ const displayController = (() => {
         // Takes Care of the Visual*/
         todoTab.unrenderNewTaskForm();
         todoTab.renderTask(data.name, data.description, data.difficulty, data.date, btn.parentElement.id);
+        // Enable Button Listeners
+        enableTaskListeners(data.name);
     };
 
-    const generateUniqueId = () => {
-        let date = new Date();
-        return `Task-${date.getFullYear()}${date.getMonth()}${date.getMinutes()}${date.getMilliseconds()}`;
-    };
+
+    (function (){
+        if (localStorage.length === 0){
+            todoTab.renderNewProjectButton();
+            todoTab.renderNoProjectWarning();
+        } else {
+            todoTab.renderNewProjectButton();
+            displayAllProjects();
+        }
+    })();
 
     document.getElementById('new-project-btn').addEventListener('click', displayProjectForm);
 
-    return { generateUniqueId, displayTaskForm }
+    return { displayTaskForm, enableTaskListeners }
 })();
+
 
 export default displayController ;
