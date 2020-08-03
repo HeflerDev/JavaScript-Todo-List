@@ -25,7 +25,7 @@ const  todoTab =  (() => {
     const renderAllProjects = (key) => {
                 renderComponents.renderTag('div', 'content', `${key}`, ['flex-grid', 'col-12']);
                 let project = renderComponents.renderTag('h2', `${key}`, `project-${key}`, ['minibox', 'col-12', 'col-l-10']);
-                project.textContent = key;
+                project.textContent = key.replace(/-+/g, " ");
                 let newBtn = renderComponents.renderTag('button', `${key}`, `new-task-btn-${key}`, ['col-12', 'col-l-2']);
                 newBtn.textContent = 'New Task';
                 //console.log(`This is ${}`)
@@ -39,24 +39,25 @@ const  todoTab =  (() => {
     const renderProject = (name) => {
        renderComponents.renderTag('div', 'content', name, ['flex-grid', 'col-12']);
        let project = renderComponents.renderTag('h2', name, `project-${name}`, ['minibox', 'col-12', 'col-l-10']);
-       project.textContent = name;
+       project.textContent = name.replace(/-+/g, " ");
        let newBtn = renderComponents.renderTag('button', name, `new-task-btn-${name}`, ['col-12', 'col-l-2']);
         newBtn.textContent = 'New Task';
        newBtn.addEventListener('click', (function () { displayController.displayTaskForm(newBtn) }));
     };
 
     const renderProjectsForm = () => {
-        renderComponents.renderTag('form', 'content', 'projects-form-container', ['flex-grid', 'around','box', 'row', 'col-l-5', 'col-12']);
-        let label = renderComponents.renderTag('label', 'projects-form-container', null, ['col-12','col-m-4', 'col-l-4']);
+        renderComponents.renderTag('div', 'content', 'project-form-container', null);
+        renderComponents.renderTag('form', 'project-form-container', 'project-form', ['flex-grid', 'around','box', 'row', 'col-l-5', 'col-12']);
+        let label = renderComponents.renderTag('label', 'project-form', null, ['col-12','col-m-4', 'col-l-4']);
         label.textContent = 'Project Name';
-        renderComponents.renderTag('input', 'projects-form-container', 'project-name', ['col-12', 'col-m-8', 'col-l-8']);
-        let submitBtn = renderComponents.renderTag('input', 'projects-form-container', 'project-submit-btn', ['col-12']);
+        renderComponents.renderTag('input', 'project-form', 'project-name', ['col-12', 'col-m-8', 'col-l-8']);
+        let submitBtn = renderComponents.renderTag('input', 'project-form', 'project-submit-btn', ['col-12']);
         submitBtn.type = 'button';
         submitBtn.value = 'Create Project';
     };
 
     const unrenderProjectsForm = () => {
-        document.getElementById('projects-form-container').remove();
+        document.getElementById('project-form-container').remove();
     };
 
     const renderNewTaskBtn = () => {
@@ -66,11 +67,10 @@ const  todoTab =  (() => {
 
     const renderTask = (name, description, difficulty, date, parent) => {
         // Create Tags
-
         renderComponents.renderTag('div', parent, `task-container-${name}`, 'box');
         renderComponents.renderTag('div',`task-container-${name}`, `sub-task-container${name}`, ['minibox','flex-grid']);
         // Title
-        renderComponents.renderTag('h2',`sub-task-container${name}`, `task-title${name}`, ['minibox', 'col-10', 'text-left']).textContent = name;
+        renderComponents.renderTag('h2',`sub-task-container${name}`, `task-title${name}`, ['minibox', 'col-10', 'text-left']).textContent = name.replace(/-+/g, " ");
         // Done Btn
         renderComponents.renderTag('button', `sub-task-container${name}`, `complete-task-btn${name}`, 'col-2').textContent = 'Done!';
         renderComponents.renderTag('div', `sub-task-container${name}`, `task-content${name}`, ['minibox', 'flex-grid', 'col-12']);
@@ -86,12 +86,12 @@ const  todoTab =  (() => {
         renderComponents.renderTag('span', `task-info-container${name}`, `difficulty-info${name}`).textContent = difficulty;
         renderComponents.renderTag('span', `task-info-container${name}`, `points-info${name}`).textContent = '1000 Points';
         renderComponents.renderTag('span', `task-info-container${name}`, `date-info${name}`).textContent = date ;
-
     };
 
     const renderNewTaskForm = () => {
+        renderComponents.renderTag('div', 'content', 'new-task-form-container');
         // Form
-        renderComponents.renderTag('form', 'content', 'new-task-form', ['box', 'row','start', 'flex-grid']);
+        renderComponents.renderTag('form', 'new-task-form-container', 'new-task-form', ['box', 'row','start', 'flex-grid']);
         // Name Input
         renderComponents.renderTag('label', 'new-task-form','taskname', ['minibox','col-12', 'col-l-2']).textContent = 'Name of the Task' ;
         renderComponents.renderTag('input', 'new-task-form', 'fname',['minibox', 'col-12', 'col-l-10']).type = 'text';
@@ -118,7 +118,7 @@ const  todoTab =  (() => {
     }
 
     function unrenderNewTaskForm() {
-        document.getElementById('new-task-form').remove();
+        document.getElementById('new-task-form-container').remove();
     }
 
 
