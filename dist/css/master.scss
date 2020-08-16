@@ -1,9 +1,5 @@
 @import './reset.css' ;
 
-* {
-    border: solid red 1px;
-}
-
 #project-form-container {
     position: fixed;
     width: 100vw;
@@ -303,6 +299,14 @@ html{
   color: $color-opposite ;
 }
 
+footer {
+    width:100%;
+    background-color: $color-primary;
+    height: 40vh;
+    color:white;
+    list-style: none;
+}
+
 @media only screen and (min-device-width: 768px) {
   @for $i from 1 through $grid-columns {
     .col-m-#{$i} {
@@ -322,6 +326,22 @@ html{
   }
 }
 
+.content {
+    background-color: $color-secondary;
+}
 
+.sub-task-container {
+    background-color: $color-accent;
+}
 
+nav {
+    background-color: $color-primary;
+}
 
+footer {
+
+}
+
+.left-container {
+    background-color: $color-secondary;
+}

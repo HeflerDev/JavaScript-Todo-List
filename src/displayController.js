@@ -66,12 +66,24 @@ const displayController = (() => {
 
     const displayAllProjects = () => {
         Object.keys(localStorage).forEach((key) => {
+            if (document.getElementById(key)) {
+                document.getElementById(key).remove();
+            }
             todoTab.renderAllProjects(key);
             let item = JSON.parse(localStorage.getItem(key));
             item.forEach((data) => {
                 let obj = JSON.parse(data);
-                todoTab.renderAllTasks(obj, key);
-                enableTaskListeners(obj.name);
+                if (obj.completed === false) {
+                    todoTab.renderAllTasks(obj, key);
+                    enableTaskListeners(obj.name);
+                }
+            });
+            item.forEach((data) => {
+                let obj = JSON.parse(data);
+                if (obj.completed === true) {
+                    todoTab.renderAllTasks(obj, key);
+                    enableTaskListeners(obj.name);
+                }
             });
         });
     };
@@ -87,13 +99,37 @@ const displayController = (() => {
         return JSON.parse(filter);
     };
 
+    function placeFormData (obj) {
+        document.getElementById('fname').value = obj.name.replace(/-+/g, " ");;
+        document.getElementById('fdescription').value = obj.description;
+        document.getElementById('foptions').value = obj.difficulty;
+        document.getElementById('datepicker').value = obj.date;
+    }
+
+    function gatherTaskFormData () {
+        return {
+            name: convertToValidId(document.getElementById('fname').value),
+            description: document.getElementById('fdescription').value,
+            difficulty: document.getElementById('foptions').value,
+            date: document.getElementById('datepicker').value,
+            completed: false
+        };
+    };
+
+    function validateFormData (data) {
+        if ((data.name != '') && (data.description != '') && (data.difficulty != '') && (data.date != '')) {
+            return true;
+        } else {
+            alert('Invalid Data, all fields must be filled');
+            return false;
+        }
+    };
+
     const checkForRepetition = (key) => {
         let check = false ;
-        console.log('mark1');
         Object.keys(localStorage).forEach((item) => {
             JSON.parse(localStorage.getItem(item)).forEach((obj) => {
                 if (JSON.parse(obj).name === key) {
-                    console.log('repeat');
                     check = true;
                 }
             });
@@ -106,47 +142,69 @@ const displayController = (() => {
         let obj = getTaskInfo(document.getElementById(`task-container-${key}`).parentElement.id, key);
         // Put the current values in the form
         todoTab.renderNewTaskForm();
-        console.log(checkForRepetition(key));
-        document.getElementById('fname').value = obj.name;
-        document.getElementById('fdescription').value = obj.description;
-        document.getElementById('foptions').value = obj.difficulty;
-        document.getElementById('datepicker').value = obj.date;
+        placeFormData(obj);
+        document.getElementById('fsubmit').addEventListener('click', (() => {
+        let data = gatherTaskFormData();
+            if (!validateFormData(data)) {
+                alert("Task can't be equal");
+                todoTab.unrenderNewTaskForm();
+            } else if (checkForRepetition(data.name)) {
+                if ((data.description != obj.description) || (data.difficulty != obj.difficulty) || (data.date != obj.date)) {
+                    handleTaskSubmit(document.getElementById(`task-container-${key}`));
+                    deleteTask(key);
+                }
+                todoTab.unrenderNewTaskForm();
+            } else {
+                handleTaskSubmit(document.getElementById(`task-container-${key}`));
+                console.log(localStorage);
+                deleteTask(key);
+                console.log(localStorage);
+            }
+        }))
     };
+
+    function completeTask(key) {
+        let storageKey = document.getElementById(`task-container-${key}`).parentElement.id;
+        let obj = getTaskInfo(storageKey, key);
+        obj.completed = true;
+        deleteTask(key);
+        let value = JSON.parse(localStorage.getItem(storageKey));
+        localStorage.removeItem(storageKey);
+        console.log(value);
+        value.push(JSON.stringify(obj));
+        console.log(value);
+        localStorage.setItem(storageKey, JSON.stringify(value));
+        console.log(value);
+        displayAllProjects();
+    }
+
 
     const enableTaskListeners = (key) => {
         document.getElementById(`delete-task-btn-${key}`).addEventListener('click', (() => { deleteTask(key) }));
         document.getElementById(`edit-task-btn-${key}`).addEventListener('click', (() => { editTask(key) }));
+        document.getElementById(`complete-task-btn${key}`).addEventListener('click', (() => { completeTask(key) }));
     };
 
-
     const handleTaskSubmit = (btn) => {
-        let data = {
-            name: convertToValidId(document.getElementById('fname').value),
-            description: document.getElementById('fdescription').value,
-            difficulty: document.getElementById('foptions').value,
-            date: document.getElementById('datepicker').value
-        };
-        if ((data.name != '') && (data.description != '') && (data.difficulty != '') && (data.date != '')) {
+        let data = gatherTaskFormData();
+        if (validateFormData(data)) {
             if (! checkForRepetition(data.name)) {
-            // Update the data on the localStorage
+                // Update the data on the localStorage
                 let storageKey = btn.parentElement.id ;
                 let value = JSON.parse(localStorage.getItem(storageKey));
                 localStorage.removeItem(storageKey);
                 value.push(JSON.stringify(data));
                 localStorage.setItem(storageKey, JSON.stringify(value));
-                // Takes Care of the Visual*/
+                // Takes Care of the Visual
                 todoTab.unrenderNewTaskForm();
-                todoTab.renderTask(data.name, data.description, data.difficulty, data.date, btn.parentElement.id);
+                displayAllProjects();
                 // Enable Button Listeners
                 enableTaskListeners(data.name);
             } else {
                 alert('Name of the task must be unique');
                 todoTab.unrenderNewTaskForm();
-        } else {
-            alert('Invalid Data');
-            todoTab.unrenderNewTaskForm();
+            }
         }
-
     };
 
 

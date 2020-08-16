@@ -1,7 +1,4 @@
 @import url(./reset.css);
-* {
-  border: solid red 1px; }
-
 #project-form-container {
   position: fixed;
   width: 100vw;
@@ -233,6 +230,13 @@ html {
   background: #242424;
   color: white; }
 
+footer {
+  width: 100%;
+  background-color: #242424;
+  height: 40vh;
+  color: white;
+  list-style: none; }
+
 @media only screen and (min-device-width: 768px) {
   .col-m-1 {
     flex-basis: 8.33%;
@@ -329,5 +333,16 @@ html {
   .col-l-12 {
     flex-basis: 100%;
     max-width: 100%; } }
+.content {
+  background-color: #646464; }
+
+.sub-task-container {
+  background-color: #c8c8c8; }
+
+nav {
+  background-color: #242424; }
+
+.left-container {
+  background-color: #646464; }
 
 /*# sourceMappingURL=master.css.map */

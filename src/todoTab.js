@@ -68,7 +68,7 @@ const  todoTab =  (() => {
     const renderTask = (name, description, difficulty, date, parent) => {
         // Create Tags
         renderComponents.renderTag('div', parent, `task-container-${name}`, 'box');
-        renderComponents.renderTag('div',`task-container-${name}`, `sub-task-container${name}`, ['minibox','flex-grid']);
+        renderComponents.renderTag('div',`task-container-${name}`, `sub-task-container${name}`, ['sub-task-container', 'minibox','flex-grid']);
         // Title
         renderComponents.renderTag('h2',`sub-task-container${name}`, `task-title${name}`, ['minibox', 'col-10', 'text-left']).textContent = name.replace(/-+/g, " ");
         // Done Btn
@@ -108,9 +108,11 @@ const  todoTab =  (() => {
         // Date Btn
         renderComponents.renderTag('label', 'new-task-form', null, ['col-12', 'col-l-2', 'minibox', 'column']).textContent = 'Due Date:';
         renderComponents.renderTag('input', 'new-task-form', 'datepicker', ['col-12', 'col-l-2']);
+        /*
         const input = document.getElementById('datepicker');
-        const datepicker = new TheDatepicker.Datepicker(input);
+        let datepicker = new TheDatepicker.Datepicker(input);
         datepicker.render();
+        */
         // Submit btn
         let submitBtn = renderComponents.renderTag('input', 'new-task-form', 'fsubmit', ['col-11', 'col-l-4']);
         submitBtn.type = 'button';
