@@ -64,6 +64,25 @@ const displayController = (() => {
         });
     };
 
+    function checkDueDate(dateString) {
+        const regex = /\d+/g;
+        const found = dateString.match(regex);
+        console.log(found)
+        let year = parseInt(found[2]);
+        let month = parseInt(found[1]) - 1;
+        let day = parseInt(found[0]);
+
+        var task = new Date(year, month, day);
+        var now = new Date();
+
+        if (now < task) {
+            return false;
+        } else {
+            return true;
+        }
+
+    };
+
     const displayAllProjects = () => {
         Object.keys(localStorage).forEach((key) => {
             if (document.getElementById(key)) {
@@ -75,6 +94,9 @@ const displayController = (() => {
                 let obj = JSON.parse(data);
                 if (obj.completed === false) {
                     todoTab.renderAllTasks(obj, key);
+                    if ( checkDueDate(obj.date) ) {
+                        document.getElementById(`task-container-${obj.name}`).classList.add('late-task');
+                    }
                     enableTaskListeners(obj.name);
                 }
             });
@@ -83,6 +105,7 @@ const displayController = (() => {
                 if (obj.completed === true) {
                     todoTab.renderAllTasks(obj, key);
                     todoTab.swapBtns(obj.name, obj.completed);
+                    document.getElementById(`edit-task-btn-${obj.name}`).disabled = true;
                     enableUndoTaskListeners(obj.name);
                 }
             });

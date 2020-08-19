@@ -98,14 +98,20 @@ $grid-columns: 12;
   $font-accent: cursive ;
 
 // App Colors
+/* Color Theme Swatches in RGBA */
+$Tema-16x-1-rgba: rgba(63,7,17, 1);
+$Tema-16x-2-rgba: rgba(140,11,35, 1);
+$Tema-16x-3-rgba: rgba(242,161,114, 1);
+$Tema-16x-4-rgba: rgba(216,145,130, 1);
+$Tema-16x-5-rgba: rgba(191,43,43, 1);
   // Text
     $color-text-light: whitesmoke ;
     $color-text-dark: black ;
   // Palette
     $color-opposite: rgba(255,255,255,1) ;
-    $color-primary: rgba(36,36,36,1) ;
-    $color-secondary: rgba(100,100,100,1) ;
-    $color-accent: rgba(200,200,200,1) ;
+    $color-primary: rgba(63,7,17,1) ;
+    $color-secondary: rgba(140,11,35, 1) ;
+    $color-accent: rgba(236, 190, 170, 1) ;
 // App Radius
   $radius-soft: 0.1rem ;
   $radius: 0.5rem ;
@@ -130,6 +136,10 @@ html{
   @media screen and (min-device-width: $breakpoint-desktop) {
     font-size: $text-desktop;
   }
+}
+
+body {
+    color: $color-opposite;
 }
 
 .box {
@@ -353,4 +363,17 @@ footer {
 
 .left-container {
     background-color: $color-secondary;
+}
+
+.sub-task-container {
+    border: solid $color-primary $border;
+    border-radius: $radius;
+}
+
+.completed-task {
+    background-color: blue;
+}
+
+.late-task {
+    background-color: red;
 }

@@ -89,6 +89,7 @@
   flex-basis: 100%;
   max-width: 100%; }
 
+/* Color Theme Swatches in RGBA */
 html {
   font-size: 42px; }
   @media screen and (min-device-width: 768px) {
@@ -97,6 +98,9 @@ html {
   @media screen and (min-device-width: 1024px) {
     html {
       font-size: 12px; } }
+
+body {
+  color: white; }
 
 .box {
   display: flex;
@@ -168,8 +172,8 @@ html {
   text-align: center; }
 
 .btn {
-  border: solid #646464 2px;
-  background: #c8c8c8;
+  border: solid #8c0b23 2px;
+  background: #ecbeaa;
   color: white;
   transition: 0.2s;
   font-family: cursive; }
@@ -179,7 +183,7 @@ html {
     transform: scale(1.1); }
 
 .border {
-  border: solid #646464 0.2rem; }
+  border: solid #8c0b23 0.2rem; }
 
 .line {
   border-width: 0.1rem; }
@@ -227,12 +231,12 @@ html {
 
 .field {
   border-radius: 5px;
-  background: #242424;
+  background: #3f0711;
   color: white; }
 
 footer {
   width: 100%;
-  background-color: #242424;
+  background-color: #3f0711;
   height: 40vh;
   color: white;
   list-style: none; }
@@ -334,22 +338,32 @@ footer {
     flex-basis: 100%;
     max-width: 100%; } }
 .content {
-  background-color: #646464; }
+  background-color: #8c0b23; }
 
 .sub-task-container {
-  background-color: #c8c8c8; }
+  background-color: #ecbeaa; }
 
 nav {
-  background-color: #242424; }
+  background-color: #3f0711; }
 
 .project-box {
-  border: solid #242424 0.2rem; }
+  border: solid #3f0711 0.2rem; }
 
 .project-name-box {
-  background-color: #242424;
+  background-color: #3f0711;
   color: white; }
 
 .left-container {
-  background-color: #646464; }
+  background-color: #8c0b23; }
+
+.sub-task-container {
+  border: solid #3f0711 0.2rem;
+  border-radius: 0.5rem; }
+
+.completed-task {
+  background-color: blue; }
+
+.late-task {
+  background-color: red; }
 
 /*# sourceMappingURL=master.css.map */
