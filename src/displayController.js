@@ -82,11 +82,13 @@ const displayController = (() => {
                 let obj = JSON.parse(data);
                 if (obj.completed === true) {
                     todoTab.renderAllTasks(obj, key);
-                    enableTaskListeners(obj.name);
+                    todoTab.swapBtns(obj.name, obj.completed);
+                    enableUndoTaskListeners(obj.name);
                 }
             });
         });
     };
+
 
     const getTaskInfo = (projectId, taskName) => {
         let obj = JSON.parse(localStorage.getItem(projectId));
@@ -170,14 +172,26 @@ const displayController = (() => {
         deleteTask(key);
         let value = JSON.parse(localStorage.getItem(storageKey));
         localStorage.removeItem(storageKey);
-        console.log(value);
         value.push(JSON.stringify(obj));
-        console.log(value);
         localStorage.setItem(storageKey, JSON.stringify(value));
-        console.log(value);
         displayAllProjects();
     }
 
+    function undoTask(key) {
+        let storageKey = document.getElementById(`task-container-${key}`).parentElement.id;
+        let obj = getTaskInfo(storageKey, key);
+        obj.completed = false;
+        deleteTask(key);
+        let value = JSON.parse(localStorage.getItem(storageKey));
+        localStorage.removeItem(storageKey);
+        value.push(JSON.stringify(obj));
+        localStorage.setItem(storageKey, JSON.stringify(value));
+        displayAllProjects();
+    };
+
+    const enableUndoTaskListeners = (key) => {
+        document.getElementById(`undo-task-btn-${key}`).addEventListener('click', () => {undoTask(key)});
+    }
 
     const enableTaskListeners = (key) => {
         document.getElementById(`delete-task-btn-${key}`).addEventListener('click', (() => { deleteTask(key) }));

@@ -338,6 +338,15 @@ nav {
     background-color: $color-primary;
 }
 
+.project-box {
+    border: solid $color-primary $border;
+}
+
+.project-name-box {
+    background-color: $color-primary;
+    color: $color-opposite;
+}
+
 footer {
 
 }

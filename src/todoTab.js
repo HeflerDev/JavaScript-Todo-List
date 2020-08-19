@@ -23,8 +23,8 @@ const  todoTab =  (() => {
     };
 
     const renderAllProjects = (key) => {
-                renderComponents.renderTag('div', 'content', `${key}`, ['flex-grid', 'col-12']);
-                let project = renderComponents.renderTag('h2', `${key}`, `project-${key}`, ['minibox', 'col-12', 'col-l-10']);
+                renderComponents.renderTag('div', 'content', `${key}`, ['flex-grid', 'col-12', 'project-box']);
+                let project = renderComponents.renderTag('h2', `${key}`, `project-${key}`, ['minibox', 'col-12', 'col-l-10', 'project-name-box']);
                 project.textContent = key.replace(/-+/g, " ");
                 let newBtn = renderComponents.renderTag('button', `${key}`, `new-task-btn-${key}`, ['col-12', 'col-l-2']);
                 newBtn.textContent = 'New Task';
@@ -39,11 +39,22 @@ const  todoTab =  (() => {
     const renderProject = (name) => {
        renderComponents.renderTag('div', 'content', name, ['flex-grid', 'col-12']);
        let project = renderComponents.renderTag('h2', name, `project-${name}`, ['minibox', 'col-12', 'col-l-10']);
-       project.textContent = name.replace(/-+/g, " ");
        let newBtn = renderComponents.renderTag('button', name, `new-task-btn-${name}`, ['col-12', 'col-l-2']);
         newBtn.textContent = 'New Task';
        newBtn.addEventListener('click', (function () { displayController.displayTaskForm(newBtn) }));
     };
+
+    const swapBtns = (name, state) => {
+        if (state) {
+            let btn = document.getElementById(`complete-task-btn${name}`);
+            btn.id = `undo-task-btn-${name}` ;
+            btn.innerHTML = 'Undo Task';
+         } else {
+            let btn = document.getElementById(`undo-task-btn-${name}`);
+            btn.id = `complete-task-btn${name}` ;
+            btn.innerHTML = 'Done!';
+         }
+    }
 
     const renderProjectsForm = () => {
         renderComponents.renderTag('div', 'content', 'project-form-container', null);
@@ -124,7 +135,7 @@ const  todoTab =  (() => {
     }
 
 
-    return { renderAllTasks, renderNoProjectWarning, renderProjectsForm, unrenderProjectsForm, renderAllProjects, renderProject, renderTask, renderNewTaskForm, unrenderNewTaskForm, renderNewTaskBtn, renderNewProjectButton }
+    return { renderAllTasks, swapBtns, renderNoProjectWarning, renderProjectsForm, unrenderProjectsForm, renderAllProjects, renderProject, renderTask, renderNewTaskForm, unrenderNewTaskForm, renderNewTaskBtn, renderNewProjectButton }
 
 })();
 

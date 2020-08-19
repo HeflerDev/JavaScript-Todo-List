@@ -342,6 +342,13 @@ footer {
 nav {
   background-color: #242424; }
 
+.project-box {
+  border: solid #242424 0.2rem; }
+
+.project-name-box {
+  background-color: #242424;
+  color: white; }
+
 .left-container {
   background-color: #646464; }
 
