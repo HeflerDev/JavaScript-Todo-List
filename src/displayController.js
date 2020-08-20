@@ -146,7 +146,13 @@ const displayController = (() => {
         enableTaskListeners(data.name);
       } else {
         todoTab.unrenderNewTaskForm();
-      }
+        /* eslint-disable */
+          alert('Repeated Task: Name must be Unique');
+        /* eslint-enable */
+      } else {
+      /* eslint-disable */
+        alert('All fields must be filled');
+        /* eslint-enable */
     }
   };
 
@@ -249,7 +255,7 @@ const displayController = (() => {
 
   document.getElementById('new-project-btn').addEventListener('click', displayProjectForm);
 
-  return { convertToValidId, displayTaskForm, enableTaskListeners };
+  return { convertToValidId, displayTaskForm, enableTaskListeners, displayAllProjects };
 })();
 
 export default displayController;
