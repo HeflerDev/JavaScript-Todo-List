@@ -149,7 +149,8 @@ const displayController = (() => {
         /* eslint-disable */
           alert('Repeated Task: Name must be Unique');
         /* eslint-enable */
-      } else {
+      }
+    } else {
       /* eslint-disable */
         alert('All fields must be filled');
         /* eslint-enable */
